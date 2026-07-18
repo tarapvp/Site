@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>rica · taraoriginals</title>
+  <!-- modern, temiz bir görünüm için Inter fontu (Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet" />
+  <style>
+    /* ----- sıfırlama & temel ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f6f5f2;
+      padding: 1.5rem;
+      /* ince gradient ve hafif doku */
+      background-image: radial-gradient(circle at 30% 10%, rgba(210, 205, 195, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 90%, rgba(190, 185, 175, 0.08) 0%, transparent 60%);
+    }
+
+    /* ----- kart / ana konteyner ----- */
+    .card {
+      max-width: 780px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(12px) saturate(1.2);
+      -webkit-backdrop-filter: blur(12px) saturate(1.2);
+      border-radius: 56px;
+      padding: 3.2rem 3rem;
+      box-shadow: 
+        0 30px 80px rgba(0, 0, 0, 0.04),
+        0 10px 30px rgba(0, 0, 0, 0.02),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(220, 215, 205, 0.25);
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    /* hafif bir cam efekti için parlaklık */
+    .card:hover {
+      background: rgba(255, 255, 255, 0.82);
+      border-color: rgba(200, 195, 185, 0.35);
+      box-shadow: 0 40px 90px rgba(0, 0, 0, 0.05);
+    }
+
+    /* ----- içerik düzeni ----- */
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.4rem;
+    }
+
+    /* ----- ana mesaj (küçük harf, modern) ----- */
+    .message {
+      font-size: clamp(1.15rem, 4.8vw, 1.9rem);
+      line-height: 1.7;
+      color: #1f1e1b;
+      font-weight: 380;
+      letter-spacing: -0.012em;
+      max-width: 660px;
+      padding: 0 0.2rem;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      font-family: 'Inter', 'SF Pro Text', system-ui, sans-serif;
+    }
+
+    /* metin içinde hafif vurgu (isteğe bağlı) */
+    .message .soft-highlight {
+      background: linear-gradient(120deg, rgba(180, 175, 165, 0.12) 0%, rgba(180, 175, 165, 0.12) 100%);
+      padding: 0.1rem 0.25rem;
+      border-radius: 10px;
+    }
+
+    /* ----- ayraç (zarif çizgi) ----- */
+    .divider {
+      width: 72px;
+      height: 2px;
+      background: #d2cdc4;
+      opacity: 0.4;
+      border-radius: 20px;
+      margin: -0.4rem 0 0.2rem 0;
+    }
+
+    /* ----- telegram linki (tıklanabilir, modern) ----- */
+    .telegram-link {
+      margin-top: 0.2rem;
+      font-size: 1.15rem;
+      font-weight: 420;
+      letter-spacing: 0.01em;
+    }
+
+    .telegram-link a {
+      text-decoration: none;
+      color: #2b2a27;
+      font-weight: 450;
+      padding: 0.3rem 0.6rem;
+      border-radius: 60px;
+      background: rgba(220, 215, 205, 0.2);
+      border: 1px solid rgba(200, 195, 185, 0.15);
+      transition: all 0.25s ease;
+      font-family: 'Inter', 'SF Mono', monospace;
+      word-break: break-all;
+      display: inline-block;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+    }
+
+    .telegram-link a:hover {
+      background: rgba(200, 195, 185, 0.25);
+      border-color: rgba(160, 155, 145, 0.4);
+      color: #0f0e0c;
+      transform: scale(1.01);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+    }
+
+    .telegram-link a:active {
+      transform: scale(0.97);
+      background: rgba(190, 185, 175, 0.25);
+    }
+
+    /* linkin altı çizgisiz ve temiz */
+    .telegram-link a::after {
+      display: none;
+    }
+
+    /* ----- küçük ekranlar için duyarlılık ----- */
+    @media (max-width: 600px) {
+      .card {
+        padding: 2.4rem 1.8rem;
+        border-radius: 40px;
+      }
+      .message {
+        font-size: clamp(1rem, 4.2vw, 1.45rem);
+        line-height: 1.6;
+      }
+      .telegram-link {
+        font-size: 1rem;
+      }
+      .telegram-link a {
+        padding: 0.25rem 0.8rem;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .card {
+        padding: 2rem 1.2rem;
+        border-radius: 32px;
+      }
+      .message {
+        font-size: 0.95rem;
+      }
+      .divider {
+        width: 48px;
+      }
+    }
+
+    /* ----- giriş animasyonu (ince) ----- */
+    .card {
+      animation: cardFadeIn 0.7s cubic-bezier(0.16, 1, 0.2, 1);
+    }
+    @keyframes cardFadeIn {
+      0% { opacity: 0; transform: translateY(16px) scale(0.97); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* erişilebilirlik & odak */
+    a:focus-visible {
+      outline: 2px solid #9a948a;
+      outline-offset: 4px;
+      border-radius: 40px;
+    }
+
+    /* metin seçimi rengi */
+    ::selection {
+      background: #d9d4cb;
+      color: #1a1917;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="content">
+      <!-- ana mesaj: tamamen küçük harf, istenen metin -->
+      <div class="message">
+        lütfen konuya girerken merhaba, selam , selamünaleyküm demeyin direkt konuya girin sonradan ulaşamayabilirsiniz rica ederim.
+      </div>
+
+      <!-- ince ayraç -->
+      <div class="divider"></div>
+
+      <!-- telegram linki: t.me/taraoriginals (tıklanabilir) -->
+      <div class="telegram-link">
+        <a href="https://t.me/taraoriginals" target="_blank" rel="noopener noreferrer">
+          t.me/taraoriginals
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- (isteğe bağlı) linkin tıklanabilirliğini ve güvenliğini garanti altına alan ufak bir betik -->
+  <script>
+    (function() {
+      const link = document.querySelector('a[href="https://t.me/taraoriginals"]');
+      if (link) {
+        // target ve rel zaten mevcut, fakat ekstra güvenlik için tekrar yazalım
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+        // varsayılan olarak tıklanabilir, hiçbir engel yok
+        // link stil olarak da tıklanabilir görünüyor
+      }
+    })();
+  </script>
+</body>
+</html>
